@@ -1,10 +1,15 @@
 pipeline {
     agent any
 
-    // Build with Params
-    parameters {
-        string(name: 'VERSION', defaultValue: '', description: 'Version of the application')
+    environment {
+        // Mendefinisikan variabel lingkungan global (opsional, bisa juga didefinisikan di script stage)
+        VERSION = ''
     }
+
+    // // Build with Params
+    // parameters {
+    //     string(name: 'VERSION', defaultValue: '', description: 'Version of the application')
+    // }
 
     stages {
         stage('Checkout') {
