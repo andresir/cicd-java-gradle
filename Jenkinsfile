@@ -1,3 +1,13 @@
+import java.nio.file.Files
+import java.nio.file.Paths
+
+@NonCPS
+def getVersionFromGradle() {
+    def buildGradleFile = new File('build.gradle').text
+    def versionLine = buildGradleFile.find { it.startsWith('version =') }
+    return versionLine?.split('=')?.last()?.trim()?.replace("'", "")
+}
+
 pipeline {
     agent any
     environment {
@@ -12,10 +22,8 @@ pipeline {
         stage('Get Version') {
             steps {
                 script {
-                    def buildGradleFile = readFile('build.gradle')
-                    def versionLine = buildGradleFile.find { it.startsWith('version =') }
-                    def version = versionLine?.split('=')?.last()?.trim()?.replace("'", "")
-
+                    // Memanggil metode @NonCPS
+                    def version = getVersionFromGradle()
                     env.VERSION = version
                     echo "Version extracted: ${env.VERSION}"
                 }
