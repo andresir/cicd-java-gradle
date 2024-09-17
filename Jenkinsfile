@@ -17,6 +17,9 @@ pipeline {
                     def versionLine = buildGradleFile.find { it.startsWith('version =') }
                     def version = versionLine?.split('=')?.last()?.trim()?.replace("'", "")
 
+                    def abc=$(grep 'version =' build.gradle | awk '{print $3}' | tr -d "'")
+                    echo "aaaaaa ======>>>>>>>> ${abc}"
+
                     echo "Version buildGradleFile-nyaa: ${buildGradleFile}"
                     echo "Version versionLine-nyaa: ${versionLine}"
                     echo "Version persiii-nyaa: ${version}"
