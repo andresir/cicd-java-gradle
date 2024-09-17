@@ -55,7 +55,7 @@ pipeline {
                     echo "Welcome to ${env.JAKARTA}"
 
                     def wilayah = sh(script: "grep -oP \"(?<=JAKARTA = ')[^']+\" build.gradle", returnStdout: true).trim()
-                    echo "Wilayah: ${wilayah}"
+                    sh "echo Wilayah: ${wilayah}"
                     env.JAKARTA = "timur"
                 }
             }
