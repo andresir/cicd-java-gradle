@@ -6,11 +6,6 @@ pipeline {
         VERSION = ''
     }
 
-    // // Build with Params
-    // parameters {
-    //     string(name: 'VERSION', defaultValue: '', description: 'Version of the application')
-    // }
-
     stages {
         stage('Checkout') {
             steps{
