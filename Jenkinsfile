@@ -17,6 +17,8 @@ pipeline {
                     def versionLine = buildGradleFile.find { it.startsWith('version =') }
                     def version = versionLine?.split('=')?.last()?.trim()?.replace("'", "")
 
+                    echo "Version buildGradleFile-nyaa: ${buildGradleFile}"
+                    echo "Version versionLine-nyaa: ${versionLine}"
                     echo "Version persiii-nyaa: ${version}"
                     
                     // Menyimpan versi sebagai variabel lingkungan
