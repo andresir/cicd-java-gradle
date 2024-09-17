@@ -31,12 +31,12 @@ pipeline {
 
                     // Cara 1
                     def version = sh(script: "grep -oP \"(?<=version = ')[^']+\" build.gradle", returnStdout: true).trim()
-                    sh "echo vv: ${version}"
+                    env.VERSION = version
 
-                    withEnv(["VERSION=${version}"]) {
-                        echo "ENV version: ${env.VERSION}"
-                        sh "echo ENV version: ${env.VERSION}"
-                    }
+                    // withEnv(["VERSION=${version}"]) {
+                    //     echo "ENV version: ${env.VERSION}"
+                    //     sh "echo ENV version: ${env.VERSION}"
+                    // }
 
                     // Cara 2
                     // def version_value = sh(returnStdout: true, script: "cat build.gradle | grep -o 'version = [^,]*'").trim()
