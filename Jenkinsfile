@@ -12,8 +12,8 @@ pipeline {
         stage('Get Version') {
             steps {
                 script {
-                    def buildGradleFile = new File('build.gradle').readLines()
-                    buildGradleFile.each { line ->
+                    def buildGradleFileABC = new File('build.gradle').readLines()
+                    buildGradleFileABC.each { line ->
                         echo "Line aaaaaaa ====>> : ${line}"
                     }
                     // Membaca file build.gradle dan mendapatkan versi
