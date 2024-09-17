@@ -51,6 +51,12 @@ pipeline {
                     // sh "echo final version: $version"
                     // env.VERSION = version
                     // sh "echo ENV version: ${env.VERSION}"
+
+                    echo "Welcome to ${env.JAKARTA}"
+
+                    def wilayah = sh(script: "grep -oP \"(?<=JAKARTA = ')[^']+\" build.gradle", returnStdout: true).trim()
+                    echo "Wilayah: ${wilayah}"
+                    env.JAKARTA = "timur"
                 }
             }
         }
@@ -58,6 +64,7 @@ pipeline {
             steps {
                 script {
                     sh "echo Version from env:${myVar}"
+                    echo "Welcome to ${env.JAKARTA}"
                 }
             }
         }
