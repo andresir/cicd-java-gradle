@@ -5,7 +5,7 @@ plugins {
     id 'application'
 }
 
-JAKARTA = 'pusat'
+JAKARTA = env.JAKARTA
 
 apply plugin: 'org.springframework.boot'
 
