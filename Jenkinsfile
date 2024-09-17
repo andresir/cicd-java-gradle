@@ -1,8 +1,11 @@
 pipeline {
     agent any
+
+    // Build with Params
     parameters {
         string(name: 'VERSION', defaultValue: '', description: 'Version of the application')
     }
+
     stages {
         stage('Checkout') {
             steps{
@@ -31,8 +34,10 @@ pipeline {
 
                     // Cara 1
                     def version = sh(script: "grep -oP \"(?<=version = ')[^']+\" build.gradle", returnStdout: true).trim()
-                    sh "echo ${version}"
-                    sh "echo param: ${params.VERSION}"
+                    env.VERSION = version
+                    
+                    // Mencetak hasil untuk debugging
+                    echo "Version set to: ${env.VERSION}"
 
                     // withEnv(["VERSION=${version}"]) {
                     //     echo "ENV version: ${env.VERSION}"
@@ -52,8 +57,11 @@ pipeline {
         stage('Get Version from env') {
             steps {
                 script {
-                    sh "echo version from env: ${params.VERSION}"
-                    sh "echo param2: ${params.VERSION}"
+                    // Mengakses variabel lingkungan yang telah di-set di stage sebelumnya
+                    echo "Using version: ${env.VERSION}"
+                    
+                    // Menggunakan variabel lingkungan dalam shell command
+                    sh "echo Version from env: ${env.VERSION}"
                 }
             }
         }
