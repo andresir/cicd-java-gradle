@@ -14,11 +14,8 @@ pipeline {
                 script {
                     // Membaca file build.gradle dan mendapatkan versi
                     def buildGradleFile = readFile('build.gradle')
-                    def versionLine = buildGradleFile.find { it.startsWith('version =') }
+                    def versionLine = buildGradleFile.find { it.startsWith('plugins {') }
                     def version = versionLine?.split('=')?.last()?.trim()?.replace("'", "")
-
-                    def abc=$(grep 'version =' build.gradle | awk '{print $3}' | tr -d "'")
-                    echo "aaaaaa ======>>>>>>>> ${abc}"
 
                     echo "Version buildGradleFile-nyaa: ${buildGradleFile}"
                     echo "Version versionLine-nyaa: ${versionLine}"
