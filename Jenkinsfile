@@ -14,6 +14,7 @@ pipeline {
                 script {
                     // Membaca file build.gradle dan mendapatkan versi
                     def buildGradleFile = readFile('build.gradle')
+                    echo "File content:\n${buildGradleFile}"
                     // def baris = buildGradleFile.each { line ->
                     //     echo "Line: ${line}" }
                     def versionLine = buildGradleFile.find { it.startsWith('p') }
