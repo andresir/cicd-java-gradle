@@ -61,5 +61,12 @@ pipeline {
                 }
             }
         }
+        stage('Finishing') {
+            steps {
+                script {
+                    sh "echo Version Final: ${myVar}"
+                }
+            }
+        }
     }
 }
