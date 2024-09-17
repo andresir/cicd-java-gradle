@@ -12,6 +12,7 @@ pipeline {
         stage('Get Version') {
             steps {
                 script {
+                    sh 'chmod +x build.gradle'
                     def file = new File('build.gradle')
                     echo "=====> ${file}"
                     if (file.exists()) {
