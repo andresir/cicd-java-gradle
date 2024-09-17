@@ -39,6 +39,7 @@ pipeline {
 
                     // Cara 1
                     def version = sh(script: "grep -oP \"(?<=version = ')[^']+\" build.gradle", returnStdout: true).trim()
+                    sh "echo vv: ${version}"
                     env.VERSION = version
 
                     // withEnv(["VERSION=${version}"]) {
