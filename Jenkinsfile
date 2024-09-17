@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     def file = new File('build.gradle')
-                    echo file
+                    echo "=====> ${file}"
                     if (file.exists()) {
                         echo "File exists."
                     } else {
