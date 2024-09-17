@@ -30,7 +30,7 @@ pipeline {
                     // echo "Version extracted: ${env.VERSION}"
 
                     def version_value = sh(returnStdout: true, script: "cat build.gradle | grep -o 'version = [^,]*'").trim()
-                    def cleaned_text = re.sub(r'^\s+', '', version_value)
+                    def cleaned_text = sh(re.sub(r'^\s+', '', version_value))
                     sh "echo Project in version value: $cleaned_text"
                     def version = cleaned_text.split(/=/)[1]
                     sh "echo final version:$version"
