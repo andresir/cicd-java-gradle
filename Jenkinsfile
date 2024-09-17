@@ -1,10 +1,7 @@
 pipeline {
     agent any
 
-    environment {
-        // Mendefinisikan variabel lingkungan global (opsional, bisa juga didefinisikan di script stage)
-        VERSION = ''
-    }
+    def myVar = ''
 
     // // Build with Params
     // parameters {
@@ -40,7 +37,7 @@ pipeline {
                     // Cara 1
                     def version = sh(script: "grep -oP \"(?<=version = ')[^']+\" build.gradle", returnStdout: true).trim()
                     sh "echo vv: ${version}"
-                    env.VERSION = version
+                    myVar = version
 
                     // withEnv(["VERSION=${version}"]) {
                     //     echo "ENV version: ${env.VERSION}"
@@ -60,9 +57,7 @@ pipeline {
         stage('Get Version from env') {
             steps {
                 script {
-                    withEnv(["VERSION=${env.VERSION}"]) {
-                        sh "echo Version from withEnv: ${VERSION}"
-                    }
+                    sh "echo Version from env: ${myVar}"
                 }
             }
         }
