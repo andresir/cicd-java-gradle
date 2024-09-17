@@ -40,9 +40,6 @@ pipeline {
                     // Cara 1
                     def version = sh(script: "grep -oP \"(?<=version = ')[^']+\" build.gradle", returnStdout: true).trim()
                     env.VERSION = version
-                    
-                    // Mencetak hasil untuk debugging
-                    echo "Version set to: ${env.VERSION}"
 
                     // withEnv(["VERSION=${version}"]) {
                     //     echo "ENV version: ${env.VERSION}"
@@ -62,11 +59,9 @@ pipeline {
         stage('Get Version from env') {
             steps {
                 script {
-                    // Mengakses variabel lingkungan yang telah di-set di stage sebelumnya
-                    echo "Using version: ${env.VERSION}"
-                    
-                    // Menggunakan variabel lingkungan dalam shell command
-                    sh "echo Version from env: ${env.VERSION}"
+                    withEnv(["VERSION=${env.VERSION}"]) {
+                        sh "echo Version from withEnv: ${VERSION}"
+                    }
                 }
             }
         }
