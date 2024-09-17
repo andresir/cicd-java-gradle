@@ -12,10 +12,18 @@ pipeline {
         stage('Get Version') {
             steps {
                 script {
-                    def buildGradleFileABC = new File('build.gradle').readLines()
-                    buildGradleFileABC.each { line ->
-                        echo "Line aaaaaaa ====>> : ${line}"
+                    def file = new File('build.gradle')
+                    if (file.exists()) {
+                        echo "File exists."
+                    } else {
+                        error "File build.gradle not found."
                     }
+                    
+                    // def buildGradleFileABC = new File('build.gradle').readLines()
+                    // buildGradleFileABC.each { line ->
+                    //     echo "Line aaaaaaa ====>> : ${line}"
+                    // }
+
                     // Membaca file build.gradle dan mendapatkan versi
                     def buildGradleFile = readFile('build.gradle')
                     def versionLine = buildGradleFile.find { it.startsWith('') }
