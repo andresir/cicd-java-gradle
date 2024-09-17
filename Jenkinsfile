@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    def myVar = '1'
+    def myVar
 
     // // Build with Params
     // parameters {
