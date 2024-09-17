@@ -14,12 +14,12 @@ pipeline {
                 script {
                     // Membaca file build.gradle dan mendapatkan versi
                     def buildGradleFile = readFile('build.gradle')
-                    def baris = buildGradleFile.each { line ->
-                        echo "Line: ${line}" }
-                    def versionLine = buildGradleFile.find { it.startsWith('') }
+                    // def baris = buildGradleFile.each { line ->
+                    //     echo "Line: ${line}" }
+                    def versionLine = buildGradleFile.find { it.startsWith('p') }
                     def version = versionLine?.split('=')?.last()?.trim()?.replace("'", "")
 
-                    echo "barissnyaa ==> ${baris}"
+                    // echo "barissnyaa ==> ${baris}"
                     echo "Version buildGradleFile-nyaa: ${buildGradleFile}"
                     echo "Version versionLine-nyaa: ${versionLine}"
                     echo "Version persiii-nyaa: ${version}"
