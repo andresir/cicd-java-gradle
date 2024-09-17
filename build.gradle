@@ -5,6 +5,8 @@ plugins {
     id 'application'
 }
 
+JAKARTA = 'pusat'
+
 apply plugin: 'org.springframework.boot'
 
 jmix {
