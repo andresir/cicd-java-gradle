@@ -16,6 +16,8 @@ pipeline {
                     def buildGradleFile = readFile('build.gradle')
                     def versionLine = buildGradleFile.find { it.startsWith('version =') }
                     def version = versionLine?.split('=')?.last()?.trim()?.replace("'", "")
+
+                    echo "Version persiii-nyaa: ${version}"
                     
                     // Menyimpan versi sebagai variabel lingkungan
                     env.VERSION = version
