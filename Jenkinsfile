@@ -30,14 +30,14 @@ pipeline {
                     // echo "Version extracted: ${env.VERSION}"
 
                     // Cara 1
-                    def xxx = sh(script: "grep -oP \"(?<=version = ')[^']+\" build.gradle", returnStdout: true).trim()
-                    sh "echo vv: ${xxx}"
+                    def version = sh(script: "grep -oP \"(?<=version = ')[^']+\" build.gradle", returnStdout: true).trim()
+                    sh "echo vv: ${version}"
 
                     // Cara 2
-                    def version_value = sh(returnStdout: true, script: "cat build.gradle | grep -o 'version = [^,]*'").trim()
-                    sh "echo Project in version value: $version_value"
-                    def version = version_value.split(/=/)[1].trim()
-                    sh "echo final version: $version"
+                    // def version_value = sh(returnStdout: true, script: "cat build.gradle | grep -o 'version = [^,]*'").trim()
+                    // sh "echo Project in version value: $version_value"
+                    // def version = version_value.split(/=/)[1].trim()
+                    // sh "echo final version: $version"
                     env.VERSION = version
                     sh "echo ENV version: ${env.VERSION}"
                 }
