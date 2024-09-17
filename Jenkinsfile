@@ -12,25 +12,14 @@ pipeline {
         stage('Get Version') {
             steps {
                 script {
-                    sh 'chmod +x build.gradle'
-                    def file = new File('build.gradle')
-                    echo "=====> ${file}"
-                    if (file.exists()) {
-                        echo "File exists."
-                    } else {
-                        error "File build.gradle not found."
-                    }
-                    
-                    // def buildGradleFileABC = new File('build.gradle').readLines()
-                    // buildGradleFileABC.each { line ->
-                    //     echo "Line aaaaaaa ====>> : ${line}"
-                    // }
-
                     // Membaca file build.gradle dan mendapatkan versi
                     def buildGradleFile = readFile('build.gradle')
+                    def baris = buildGradleFile.each { line ->
+                        echo "Line: ${line}" }
                     def versionLine = buildGradleFile.find { it.startsWith('') }
                     def version = versionLine?.split('=')?.last()?.trim()?.replace("'", "")
 
+                    echo "barissnyaa ==> ${baris}"
                     echo "Version buildGradleFile-nyaa: ${buildGradleFile}"
                     echo "Version versionLine-nyaa: ${versionLine}"
                     echo "Version persiii-nyaa: ${version}"
