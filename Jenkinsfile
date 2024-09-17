@@ -1,7 +1,7 @@
 pipeline {
     agent any
-    environment {
-        VERSION = ''
+    parameters {
+        string(name: 'VERSION', defaultValue: '', description: 'Version of the application')
     }
     stages {
         stage('Checkout') {
@@ -31,7 +31,7 @@ pipeline {
 
                     // Cara 1
                     def version = sh(script: "grep -oP \"(?<=version = ')[^']+\" build.gradle", returnStdout: true).trim()
-                    env.VERSION = ${version}
+                    params.VERSION = version
 
                     // withEnv(["VERSION=${version}"]) {
                     //     echo "ENV version: ${env.VERSION}"
@@ -51,7 +51,7 @@ pipeline {
         stage('Get Version from env') {
             steps {
                 script {
-                    sh "echo version from env: ${env.VERSION}"
+                    sh "echo version from env: ${params.VERSION}"
                 }
             }
         }
