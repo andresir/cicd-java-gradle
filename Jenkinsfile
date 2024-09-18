@@ -18,6 +18,10 @@ pipeline {
         stage('check Version') {
             steps {
                 script {
+                    def deployEnv = params.DEPLOY_ENV
+                    def appVersion = params.APP_VERSION
+                    echo "Deploying to environment: ${deployEnv}"
+                    echo "Application version: ${appVersion}"
                     // // Membaca file build.gradle dan mendapatkan versi
                     // def buildGradleFile = readFile('build.gradle')
                     // echo "File content:\n${buildGradleFile}.take(100)"
