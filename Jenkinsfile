@@ -3,10 +3,11 @@ def myVar
 pipeline {
     agent any
 
-    // // Build with Params
-    // parameters {
-    //     string(name: 'VERSION', defaultValue: '', description: 'Version of the application')
-    // }
+    // Build with Params
+    parameters {
+        choice(name: 'DEPLOY_ENV', choices: ['dev', 'staging', 'prod'], description: 'Environment to deploy')
+        string(name: 'APP_VERSION', defaultValue: '1.0.0', description: 'Version of the application')
+    }
 
     stages {
         stage('Checkout') {
