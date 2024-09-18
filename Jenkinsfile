@@ -3,11 +3,11 @@ def myVar
 pipeline {
     agent any
 
-    // // Build with Params
-    // parameters {
-    //     choice(name: 'DEPLOY_ENV', choices: ['dev', 'staging', 'prod'], description: 'Environment to deploy')
-    //     string(name: 'APP_VERSION', defaultValue: '1.0.0', description: 'Version of the application')
-    // }
+    // Build with Params
+    parameters {
+        choice(name: 'DEPLOY_ENV', choices: ['dev', 'staging', 'prod'], description: 'Environment to deploy')
+        string(name: 'APP_VERSION', defaultValue: '1.0.0', description: 'Version of the application')
+    }
 
     stages {
         stage('Checkout') {
@@ -18,10 +18,10 @@ pipeline {
         stage('check Version') {
             steps {
                 script {
-                    // def deployEnv = params.DEPLOY_ENV
-                    // def appVersion = params.APP_VERSION
-                    // echo "Deploying to environment: ${deployEnv}"
-                    // echo "Application version: ${appVersion}"
+                    def deployEnv = params.DEPLOY_ENV
+                    def appVersion = params.APP_VERSION
+                    echo "Deploying to environment: ${deployEnv}"
+                    echo "Application version: ${appVersion}"
                     // // Membaca file build.gradle dan mendapatkan versi
                     // def buildGradleFile = readFile('build.gradle')
                     // echo "File content:\n${buildGradleFile}.take(100)"
